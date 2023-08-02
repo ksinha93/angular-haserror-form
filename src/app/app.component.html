@@ -1,0 +1,85 @@
+<nav class="navbar navbar-expand-lg" style="background-color:darkred">
+  <div class="container-fluid">
+    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+			style="background-color:indianred"
+    >
+		<span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a [routerLink]="['./hello']" class="nav-link" style="color:yellow;"
+            >Menu</a
+          >
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['./custord']" class="nav-link" style="color:yellow;"
+            >Customer Order</a
+          >
+        </li>
+      </ul>
+      <li class="nav-item list-unstyled me-2"></li>
+      <li class="nav-item list-unstyled me-2">
+        <button
+          type="button"
+          [routerLink]="['./login']"
+          class="btn btn-primary nav-link"
+          *ngIf="!isUserValid"
+          style="color:yellow;"
+        >
+          Login
+        </button>
+      </li>
+      <li class="nav-item list-unstyled me-2">
+        <button
+          (click)="onLogOut()"
+          type="button"
+          class="btn btn-primary nav-link"
+          *ngIf="isUserValid"
+          style="color:yellow;"
+        >
+          Log Out
+        </button>
+      </li>
+    </div>
+    <form class="d-flex" role="search">
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+        #search
+      />
+      <button
+        class="btn bg-success"
+        type="button"
+        (click)="SearchMenu(search.value)"
+        style="color:white;"
+      >
+        Search
+      </button>
+    </form>
+  </div>
+</nav>
+<div class="container-fluid me-3">
+  <span class="float-end fs-sm fs-md">Welcome Guest</span>
+
+  <span *ngIf="isUserValid" class="float-end fs-sm fs-md me-4"
+    ><i class="bi bi-currency-rupee"></i>{{ totAmount }}</span
+  >
+  <span *ngIf="isUserValid" class="float-end fs-sm fs-md me-2">{{
+    totMenuCount
+  }}</span>
+</div>
+
+<div class="container-fluid mt-4">
+  <router-outlet></router-outlet>
+</div>

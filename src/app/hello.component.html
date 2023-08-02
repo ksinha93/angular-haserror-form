@@ -1,0 +1,46 @@
+<div
+  class="container-fluid border border-3 border-info"
+  style="background-color:darkred"
+>
+  <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3">
+    <div *ngFor="let item of MenuItems">
+      <div class="col mb-1 mt-2">
+        <div class="card h-100" style="background-color:darkgreen">
+          <div class="card-body" style="color:white;font-weight:bold">
+            <h5 class="card-title fs-sm fs-md">{{ item.menuName }}</h5>
+            <h6 class="card-subtitle fs-sm fs-md">{{ item.menuName }}</h6>
+            <p class="card-text">
+              The price is <i class="bi bi-currency-rupee"></i
+              >{{ item.menuPrice }}
+            </p>
+            <hr />
+            <input
+              type="checkbox"
+              [value]="item"
+              (change)="onCheckBoxSelect($event, item)"
+              [checked]="isChecked(item)"
+              class="form-check-input col-xs-3 col-md-3"
+            />
+            <button (click)="addItem(item)" class="ms-2 col-xs-1 col-md-1">
+              <span>
+                <i class="bi bi-plus-square"></i>
+              </span>
+            </button>
+            <input
+              type="text"
+              value=""
+              [(ngModel)]="item.itemQty"
+              class="col-xs-1 col-sm-3 col-md-9"
+            />
+            <button (click)="removeItem(item)" class="col-xs-1 col-md-1">
+              <span class="col-xs-1 col-md-1">
+                <i class="bi bi-file-minus"></i>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="bg-success" (click)="placeOrder()">Place Order</button>
+</div>
